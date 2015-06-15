@@ -13,5 +13,14 @@ namespace MyLabService
         public string FirstName { get; set; }       // First Name of patient
         public string LastName { get; set; }        // Last Name of patient
         public PatientGender Gender { get; set; }   // Gender of patient
+
+        // Constructor
+        public Patient(int mrn, string firstName, string lastName, PatientGender gender)
+        {
+            this.MRN = mrn;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Gender = gender;
+        }
     }
 }

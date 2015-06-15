@@ -10,5 +10,11 @@ namespace MyLabService
     {
         // Property Type
         public TestType Type { get; set; }
+
+        // Constructor
+        public Test(string code, string name, TestType type): base(code, name)
+        {
+            this.Type = type;
+        }
     }
 }

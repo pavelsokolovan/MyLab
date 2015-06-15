@@ -21,5 +21,16 @@ namespace MyLabService
 
         // Property Name
         public string Name { get; set; }
+
+        // Constructor 0
+        public Item()
+        { }
+        
+        // Constructor 1
+        public Item(string code, string name)
+        {
+            this.code = code;
+            this.Name = name;
+        }
     }
 }

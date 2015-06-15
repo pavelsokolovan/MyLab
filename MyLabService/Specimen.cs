@@ -10,5 +10,11 @@ namespace MyLabService
     {
         // Property VolumeUnit
         public SpecimenVolumeUnit VolumeUnit { get; set; }
+
+        // Constructor
+        public Specimen(string code, string name, SpecimenVolumeUnit volumeUnit): base(code, name)
+        {
+            this.VolumeUnit = volumeUnit;
+        }
     }
 }

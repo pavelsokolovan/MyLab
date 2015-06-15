@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clinic.cs" />
+    <Compile Include="Order.cs" />
     <Compile Include="PatientGender.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Patient.cs" />

@@ -10,5 +10,11 @@ namespace MyLabService
     {
         // Property Volume
         public double Volume { get; set; }
+
+        // Constructor
+        public Tube(string code, string name, double volume): base(code, name)
+        {
+            this.Volume = volume;
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLabService
 {
-    enum PatientGender
+    public enum PatientGender
     {
         Male,
         Female
