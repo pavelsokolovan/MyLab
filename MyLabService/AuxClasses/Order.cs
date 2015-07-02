@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLabService
 {
-    class Order
+    internal class Order
     {
         private int orderNumber;        // Order Number
         private Patient patient;        // Patient in Order

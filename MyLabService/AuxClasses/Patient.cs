@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLabService
 {
-    public class Patient
+    internal class Patient
     {
         // Properties
         public int MRN { get; set; }                // Mediacal Record Number of patient

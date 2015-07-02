@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLabService
 {
-    public class Specimen: Item
+    internal class Specimen : Item
     {
         // Property VolumeUnit
         public SpecimenVolumeUnit VolumeUnit { get; set; }

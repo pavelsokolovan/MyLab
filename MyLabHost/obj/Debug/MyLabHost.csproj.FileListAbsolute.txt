@@ -1,0 +1,8 @@
+C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabHost\bin\Debug\MyLabHost.exe.config
+C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabHost\bin\Debug\MyLabHost.exe
+C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabHost\bin\Debug\MyLabHost.pdb
+C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabHost\bin\Debug\MyLabService.dll
+C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabHost\bin\Debug\MyLabService.pdb
+C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabHost\obj\Debug\MyLabHost.csprojResolveAssemblyReference.cache
+C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabHost\obj\Debug\MyLabHost.exe
+C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabHost\obj\Debug\MyLabHost.pdb

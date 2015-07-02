@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLabService
 {
-    class Clinic: Item
+    internal class Clinic: Item
     {
         // Property Location
         public string Location { get; set; }

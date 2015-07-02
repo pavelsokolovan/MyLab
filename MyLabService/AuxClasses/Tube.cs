@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLabService
 {
-    public class Tube: Item
+    internal class Tube : Item
     {
         // Property Volume
         public double Volume { get; set; }

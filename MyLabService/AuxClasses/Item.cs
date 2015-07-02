@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLabService
 {
-    public abstract class Item
+    internal abstract class Item
     {
         private string code;    // code of Item
 
