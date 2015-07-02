@@ -16,12 +16,11 @@ namespace MyLabHost
 
             /*TubeCollector tubeCollector = new TubeCollector();
             tubeCollector.Add("URCUP", "Urine cup", 10);
-            tubeCollector.Add("BLCUP", "Blood cup", 7);
-            tubeCollector.Add("5ML", "5 ml cup", 5);
-            /*foreach (string item in tubeCollector.GetTubeCodes())
-                Console.WriteLine(item);
+            tubeCollector.Add("BLCUP", "Blood cup", 15);
+            tubeCollector.Add("5ML", "5 ml cup", 5);            
             Console.ReadKey();*/
 
+            
             Uri adress = new Uri("http://localhost:8080/");                     // A - adress
             BasicHttpBinding binding = new BasicHttpBinding();                  // B - binfding
             Type contract = typeof(ITubeCollector);                             // C - contract
@@ -37,7 +36,7 @@ namespace MyLabHost
 
             Console.WriteLine("Host is ready");
             Console.ReadKey();
-
+            
             host.Close();
         }
     }

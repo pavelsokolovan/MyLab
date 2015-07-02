@@ -26,21 +26,21 @@ namespace MyLabClient
         }
 
         // Method to Add new tube
-        public void Add(string code, string name, double volume)
+        public bool Add(string code, string name, int volume)
         {
-            tubeCollectorChannel.Add(code, name, volume);
+            return tubeCollectorChannel.Add(code, name, volume);
         }
 
-        // Method to get collection of tube codes
+        /*/ Method to get collection of tube codes
         public string GetTubeCodes()
         {
             return tubeCollectorChannel.GetTubeCodes();
-        }
+        }*/
 
-        // TEMP
+        /*/ TEMP
         public string[] GetString(string st)
         {
             return tubeCollectorChannel.GetString(st);
-        }
+        }*/
     }
 }

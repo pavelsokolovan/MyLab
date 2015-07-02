@@ -11,13 +11,13 @@ namespace MyLabService.Services
     public interface ITubeCollector
     {
         [OperationContract]
-        void Add(string code, string name, double volume);
+        bool Add(string code, string name, int volume);
 
-        [OperationContract]
-        string GetTubeCodes();
+        /*[OperationContract]
+        string GetTubeCodes();*/
 
-        // TEMP
+        /*/ TEMP
         [OperationContract]
-        string[] GetString(string st);
+        string[] GetString(string st);*/
     }
 }
