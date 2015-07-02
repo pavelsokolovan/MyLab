@@ -1,8 +1,0 @@
-C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabClient\obj\Debug\MyLabClient.csprojResolveAssemblyReference.cache
-C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabClient\bin\Debug\MyLabClient.exe.config
-C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabClient\bin\Debug\MyLabClient.exe
-C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabClient\bin\Debug\MyLabClient.pdb
-C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabClient\bin\Debug\MyLabService.dll
-C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabClient\bin\Debug\MyLabService.pdb
-C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabClient\obj\Debug\MyLabClient.exe
-C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabClient\obj\Debug\MyLabClient.pdb

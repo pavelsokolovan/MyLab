@@ -3,3 +3,4 @@ C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabService\bin\Debug
 C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabService\bin\Debug\MyLabService.pdb
 C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabService\obj\Debug\MyLabService.dll
 C:\Users\psok\documents\visual studio 2013\Projects\MyLab\MyLabService\obj\Debug\MyLabService.pdb
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabService\bin\Debug\MyLabService.dll.config

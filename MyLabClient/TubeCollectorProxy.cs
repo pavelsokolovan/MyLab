@@ -1,15 +1,14 @@
-﻿using System;
+﻿using MyLabService.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using System.ServiceModel;
-using MyLabService.Services;
 
 namespace MyLabClient
 {
-    // Proxy Class for TubeCollector
-    class TubeCollectorProxy: ITubeCollector
+    class TubeCollectorProxy : ITubeCollector
     {
         private ITubeCollector tubeCollectorChannel;       // channel
 
@@ -30,17 +29,5 @@ namespace MyLabClient
         {
             return tubeCollectorChannel.Add(code, name, volume);
         }
-
-        /*/ Method to get collection of tube codes
-        public string GetTubeCodes()
-        {
-            return tubeCollectorChannel.GetTubeCodes();
-        }*/
-
-        /*/ TEMP
-        public string[] GetString(string st)
-        {
-            return tubeCollectorChannel.GetString(st);
-        }*/
     }
 }

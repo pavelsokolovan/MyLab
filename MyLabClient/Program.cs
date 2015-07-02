@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MyLabClient
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
         {
-            Console.Title = "CLIENT";
-
-            TubeCollectorProxy tubeCollector = new TubeCollectorProxy();
-            tubeCollector.Add("URCUP", "Urine cup", 10);
-            tubeCollector.Add("BLCUP", "Blood cup", 7);
-            tubeCollector.Add("5ML", "5 ml cup", 5);       
-            
-            Console.ReadKey();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
     }
 }
