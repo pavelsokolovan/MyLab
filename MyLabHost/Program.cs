@@ -14,12 +14,17 @@ namespace MyLabHost
         {
             Console.Title = "SERVER";
 
+            // Add new rows in DB
             /*TubeCollector tubeCollector = new TubeCollector();
-            tubeCollector.Add("URCUP", "Urine cup", 10);
-            tubeCollector.Add("BLCUP", "Blood cup", 15);
-            tubeCollector.Add("5ML", "5 ml cup", 5);            
+            //tubeCollector.Add("URCUP", "Urine cup", 10);
+            tubeCollector.Add("BLCUP", "Blood cup", null);
+            //tubeCollector.Add("5ML", "5 ml cup", 5);            
             Console.ReadKey();*/
 
+            // Try to find code in DB
+            /*TubeCollector tubeCollector = new TubeCollector();
+            Console.WriteLine(tubeCollector.Contains("URCUP"));
+            Console.ReadKey();*/
             
             Uri adress = new Uri("http://localhost:8080/");                     // A - adress
             BasicHttpBinding binding = new BasicHttpBinding();                  // B - binfding

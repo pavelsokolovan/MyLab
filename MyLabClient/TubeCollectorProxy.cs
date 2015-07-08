@@ -29,5 +29,11 @@ namespace MyLabClient
         {
             return tubeCollectorChannel.Add(code, name, volume);
         }
+
+        // Method to checks if code is presented in DB
+        public bool Contains(string code)
+        {
+            return tubeCollectorChannel.Contains(code);
+        }
     }
 }
