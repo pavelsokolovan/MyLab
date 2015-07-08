@@ -1,0 +1,9 @@
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabUnitTest\obj\Debug\MyLabUnitTest.csprojResolveAssemblyReference.cache
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabUnitTest\bin\Debug\MyLabUnitTest.dll
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabUnitTest\bin\Debug\MyLabUnitTest.pdb
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabUnitTest\bin\Debug\MyLabClient.exe
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabUnitTest\bin\Debug\MyLabService.dll
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabUnitTest\bin\Debug\MyLabClient.pdb
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabUnitTest\bin\Debug\MyLabService.pdb
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabUnitTest\obj\Debug\MyLabUnitTest.dll
+C:\Users\psok\Documents\Visual Studio 2013\Projects\MyLab\MyLabUnitTest\obj\Debug\MyLabUnitTest.pdb

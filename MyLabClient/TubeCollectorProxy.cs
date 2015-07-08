@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyLabClient
 {
-    class TubeCollectorProxy : ITubeCollector
+    public class TubeCollectorProxy : ITubeCollector
     {
         private ITubeCollector tubeCollectorChannel;       // channel
 

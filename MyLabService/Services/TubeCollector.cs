@@ -16,21 +16,17 @@ namespace MyLabService.Services
         public bool Add(string code, string name, int volume)
         {
             // Open connection to DB
-            SqlConnection connection = this.CreateSqlConnection();
-            connection.Open();
-
-            // Create DataSet with data from DB
-            DataSet dataSet;
-            SqlDataAdapter dataAdapter;
+            string commandText = "select * from TUBE";
             string tableName = "Table";
-            GetDataSet("select * from TUBE", connection, tableName, out dataSet, out dataAdapter);
+            DBAccessProvider dbAccessProvider = new DBAccessProvider(commandText, tableName);
+            dbAccessProvider.OpenConnection();
    
             // Check if new code is exist in DB            
-            DataRow findRow = dataSet.Tables[tableName].Rows.Find(code);  // Try to find row with new code            
+            DataRow findRow = dbAccessProvider.DataSet.Tables[tableName].Rows.Find(code);  // Try to find row with new code            
             if (findRow == null)    // new code isn't exist in DB - add new row
             {
                 // Create new Row
-                DataRow newRow = dataSet.Tables[tableName].NewRow();
+                DataRow newRow = dbAccessProvider.DataSet.Tables[tableName].NewRow();
                 // Fill new Row with data
                 //newRow["TUBE_ID"] = ;
                 newRow["TUBE_CODE"] = code;
@@ -38,24 +34,24 @@ namespace MyLabService.Services
                 newRow["TUBE_VOLUME"] = volume;
 
                 // Add new Row to DataRow collection            
-                dataSet.Tables["Table"].Rows.Add(newRow);
+                dbAccessProvider.DataSet.Tables["Table"].Rows.Add(newRow);
 
                 // Update Table in DB
-                dataAdapter.Update(dataSet, tableName);
+                dbAccessProvider.DataAdapter.Update(dbAccessProvider.DataSet, tableName);
 
-                // Close
-                connection.Close(); 
+                // Close connection to DB
+                dbAccessProvider.CloseConnection();
 
                 // Check if new row was added
-                if ((findRow = dataSet.Tables["Table"].Rows.Find(code)) != null)
+                if ((findRow = dbAccessProvider.DataSet.Tables[tableName].Rows.Find(code)) != null)
                     return true;
                 else
                     return false;
             }
             else     // new code is already exist in DB - don't add new row
             {
-                // Close
-                connection.Close();
+                // Close connection to DB
+                dbAccessProvider.CloseConnection();
                 return false;
             }
         }
@@ -66,56 +62,18 @@ namespace MyLabService.Services
         public bool Contains(string code)
         {
             // Open connection to DB
-            SqlConnection connection = this.CreateSqlConnection();
-            connection.Open();
-
-            // Create DataSet with data from DB
-            DataSet dataSet;
-            SqlDataAdapter dataAdapter;
+            string commandText = "select TUBE_CODE from TUBE";
             string tableName = "Table";
-            GetDataSet("select TUBE_CODE from TUBE", connection, tableName, out dataSet, out dataAdapter);
+            DBAccessProvider dbAccessProvider = new DBAccessProvider(commandText, tableName);
+            dbAccessProvider.OpenConnection();
 
             // Try to find code in dataSet
-            DataRow findRow = dataSet.Tables["Table"].Rows.Find(code);
+            DataRow findRow = dbAccessProvider.DataSet.Tables[tableName].Rows.Find(code);
 
-            // Close connection
-            connection.Close();
+            // Close connection to DB
+            dbAccessProvider.CloseConnection();
 
             return (findRow != null);
-        }
-
-        // Method Create Sql Connection
-        // Return SqlConnection instance
-        private SqlConnection CreateSqlConnection()
-        {
-            // Connection to DB
-            SqlConnection connection = new SqlConnection(
-                @"Data Source=.\SQLEXPRESS;" +
-                @"Initial Catalog=MyLabDB1;" +
-                //@"AttachDbFilename='C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\MyLabDB1.mdf';" +   
-                @"Integrated Security=sspi;Connect Timeout=30;");
-            //@"User Instance=true;");
-                        
-            return connection;
-        }
-
-        // Method Get DataSet
-        private void GetDataSet(string commandText, SqlConnection connection, string tableName, out DataSet dataSet, out SqlDataAdapter dataAdapter)
-        {
-            // Create DataAdapter
-            dataAdapter = new SqlDataAdapter(
-                commandText, connection);
-            // Set property for download primery keys
-            dataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-
-            // Create CommandBuilder
-            SqlCommandBuilder builder = new SqlCommandBuilder(dataAdapter);
-
-            // Create DataSet
-            dataSet = new DataSet();
-
-            // Fill DataSet
-            dataAdapter.Fill(dataSet, tableName);
         }
     }
 }

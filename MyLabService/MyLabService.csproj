@@ -45,6 +45,7 @@
     <Compile Include="AuxClasses\PatientGender.cs" />
     <Compile Include="AuxClasses\Item.cs" />
     <Compile Include="AuxClasses\Patient.cs" />
+    <Compile Include="AuxClasses\DBAccessProvider.cs" />
     <Compile Include="MyLabDB1DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
