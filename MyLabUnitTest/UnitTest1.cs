@@ -10,6 +10,8 @@ namespace MyLabUnitTest
     [TestClass]
     public class UnitTest1
     {
+        public string tubeCode = "TESTCODE";
+        
         #region TubeCollector_Add
 
         [TestMethod]
@@ -33,7 +35,7 @@ namespace MyLabUnitTest
 
             Assert.IsTrue(findRow != null, "New Tube row hasn't been added to DB");
 
-            // Delete new row from Tube table if it exist
+            // Delete new row from DB if it is exist
             if (findRow != null)
             {
                 findRow.Delete();
@@ -57,7 +59,7 @@ namespace MyLabUnitTest
 
             Assert.IsTrue(actual = expected, "New Tube row hasn't been added to DB");
 
-            // Delete new row from Tube table if it exist
+            // Delete new row from Tube table if it is exist
             // Open connection to DB
             string commandText = "select TUBE_CODE from TUBE";
             string tableName = "Table";
@@ -65,7 +67,7 @@ namespace MyLabUnitTest
             dbAccessProvider.OpenConnection();
             // Find row with tubeCode in dataSet
             DataRow findRow = dbAccessProvider.DataSet.Tables[tableName].Rows.Find(tubeCode);
-            // Delete findRow from dataset
+            // Delete new row from DB
             if (findRow != null)
             {
                 findRow.Delete();
@@ -81,18 +83,15 @@ namespace MyLabUnitTest
 
         [TestMethod]
         public void TubeCollector_Contains_WhenCodeExist_ReturnTrue()
-        {            
-            string tubeCode = "TESTCODE";
-
-            // Check if code is exist in DB. If not exist - add it to DB
+        { 
+            // Add new row in Tube table if it isn't exist in DB
             // Open connection to DB
             string commandText = "select * from TUBE";
             string tableName = "Table";
             DBAccessProvider dbAccessProvider = new DBAccessProvider(commandText, tableName);
-            dbAccessProvider.OpenConnection();
+            dbAccessProvider.OpenConnection();            
             // Find row with tubeCode in dataSet
             DataRow findRow = dbAccessProvider.DataSet.Tables[tableName].Rows.Find(tubeCode);
-            // Add code if it not exist in DB
             if (findRow == null)
             {
                 // Create new Row
@@ -103,24 +102,57 @@ namespace MyLabUnitTest
                 newRow["TUBE_NAME"] = "Testing row";
                 newRow["TUBE_VOLUME"] = 55;
                 // Add new Row to DataRow collection            
-                dbAccessProvider.DataSet.Tables["Table"].Rows.Add(newRow);
+                dbAccessProvider.DataSet.Tables[tableName].Rows.Add(newRow);
                 // Update Table in DB
                 dbAccessProvider.DataAdapter.Update(dbAccessProvider.DataSet, tableName);
-                // Close connection to DB
-                dbAccessProvider.CloseConnection();
 
-                // Check if row was added. If not - fail test
-                if ((findRow = dbAccessProvider.DataSet.Tables[tableName].Rows.Find(tubeCode)) != null)
+                // Check if row was added. If not - fail test            
+                if ((findRow = dbAccessProvider.DataSet.Tables[tableName].Rows.Find(tubeCode)) == null)
                     Assert.Fail("No ability to add testing row in DB");
             }
 
             // Check Contains method
             TubeCollectorProxy tubeCollector = new TubeCollectorProxy();
-            bool expected = true;
             bool actual = tubeCollector.Contains(tubeCode);
-            Assert.IsTrue(actual = expected, "Table isn't contain code");
+            Assert.IsTrue(actual, "Table isn't contain code");
+
+            // Delete new row from DB
+            if (findRow != null)
+            {
+                findRow.Delete();
+                // Update Tube table
+                dbAccessProvider.DataAdapter.Update(dbAccessProvider.DataSet, tableName);
+            }
+            // Close connection to DB
+            dbAccessProvider.CloseConnection();
         }
 
+        [TestMethod]
+        public void TubeCollector_Contains_WhenCodeNotExist_ReturnFalse()
+        {
+            // Check if code is exist in DB. If exist - delete it
+            // Open connection to DB
+            string commandText = "select TUBE_CODE from TUBE";
+            string tableName = "Table";
+            DBAccessProvider dbAccessProvider = new DBAccessProvider(commandText, tableName);
+            dbAccessProvider.OpenConnection();
+            // Find row with tubeCode in dataSet
+            DataRow findRow = dbAccessProvider.DataSet.Tables[tableName].Rows.Find(tubeCode);
+            // If code is exist in DB - delete it
+            if (findRow != null)
+            {
+                findRow.Delete();
+                // Update Tube table
+                dbAccessProvider.DataAdapter.Update(dbAccessProvider.DataSet, tableName);
+            }            
+            // Close connection to DB
+            dbAccessProvider.CloseConnection();
+            
+            // Check Contains method
+            TubeCollectorProxy tubeCollector = new TubeCollectorProxy();
+            bool actual = tubeCollector.Contains(tubeCode);
+            Assert.IsFalse(actual, "Table is contain code");
+        }
         #endregion
     }
 }
