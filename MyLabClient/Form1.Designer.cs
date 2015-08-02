@@ -36,13 +36,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxTubeVolume = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.buttonTubeEdit = new System.Windows.Forms.Button();
+            this.buttonTubeNew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(85, 9);
+            this.label1.Location = new System.Drawing.Point(131, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 16);
             this.label1.TabIndex = 0;
@@ -51,7 +53,7 @@
             // buttonTubeSave
             // 
             this.buttonTubeSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTubeSave.Location = new System.Drawing.Point(144, 133);
+            this.buttonTubeSave.Location = new System.Drawing.Point(155, 137);
             this.buttonTubeSave.Name = "buttonTubeSave";
             this.buttonTubeSave.Size = new System.Drawing.Size(75, 23);
             this.buttonTubeSave.TabIndex = 1;
@@ -73,17 +75,19 @@
             // 
             this.textBoxTubeCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxTubeCode.Location = new System.Drawing.Point(74, 46);
+            this.textBoxTubeCode.MaxLength = 20;
             this.textBoxTubeCode.Name = "textBoxTubeCode";
-            this.textBoxTubeCode.Size = new System.Drawing.Size(145, 20);
+            this.textBoxTubeCode.Size = new System.Drawing.Size(237, 20);
             this.textBoxTubeCode.TabIndex = 3;
             this.textBoxTubeCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTubeCode_KeyPress);
-            this.textBoxTubeCode.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);            
+            this.textBoxTubeCode.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
             // 
             // textBoxTubeName
             // 
             this.textBoxTubeName.Location = new System.Drawing.Point(74, 72);
+            this.textBoxTubeName.MaxLength = 128;
             this.textBoxTubeName.Name = "textBoxTubeName";
-            this.textBoxTubeName.Size = new System.Drawing.Size(145, 20);
+            this.textBoxTubeName.Size = new System.Drawing.Size(237, 20);
             this.textBoxTubeName.TabIndex = 5;
             // 
             // label3
@@ -101,7 +105,7 @@
             this.textBoxTubeVolume.Location = new System.Drawing.Point(74, 98);
             this.textBoxTubeVolume.MaxLength = 3;
             this.textBoxTubeVolume.Name = "textBoxTubeVolume";
-            this.textBoxTubeVolume.Size = new System.Drawing.Size(145, 20);
+            this.textBoxTubeVolume.Size = new System.Drawing.Size(237, 20);
             this.textBoxTubeVolume.TabIndex = 7;
             this.textBoxTubeVolume.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTubeVolume_KeyPress);
             // 
@@ -115,11 +119,35 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Volume:";
             // 
+            // buttonTubeEdit
+            // 
+            this.buttonTubeEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonTubeEdit.Location = new System.Drawing.Point(236, 137);
+            this.buttonTubeEdit.Name = "buttonTubeEdit";
+            this.buttonTubeEdit.Size = new System.Drawing.Size(75, 23);
+            this.buttonTubeEdit.TabIndex = 8;
+            this.buttonTubeEdit.Text = "Edit";
+            this.buttonTubeEdit.UseVisualStyleBackColor = true;
+            this.buttonTubeEdit.Click += new System.EventHandler(this.buttonTubeEdit_Click);
+            // 
+            // buttonTubeNew
+            // 
+            this.buttonTubeNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonTubeNew.Location = new System.Drawing.Point(74, 137);
+            this.buttonTubeNew.Name = "buttonTubeNew";
+            this.buttonTubeNew.Size = new System.Drawing.Size(75, 23);
+            this.buttonTubeNew.TabIndex = 9;
+            this.buttonTubeNew.Text = "New";
+            this.buttonTubeNew.UseVisualStyleBackColor = true;
+            this.buttonTubeNew.Click += new System.EventHandler(this.buttonTubeNew_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(249, 172);
+            this.ClientSize = new System.Drawing.Size(328, 172);
+            this.Controls.Add(this.buttonTubeNew);
+            this.Controls.Add(this.buttonTubeEdit);
             this.Controls.Add(this.textBoxTubeVolume);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxTubeName);
@@ -145,6 +173,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxTubeVolume;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonTubeEdit;
+        private System.Windows.Forms.Button buttonTubeNew;
 
     }
 }

@@ -19,10 +19,31 @@ namespace MyLabClient
         {
             InitializeComponent();
             this.buttonTubeSave.Enabled = false;        // Disable buttonTubeSave button befor fill textBoxTubeCode field
+            this.buttonTubeEdit.Enabled = false;        // Disable buttonTubeEdit button befor new Item will be saved
+            this.buttonTubeNew.Enabled = false;         // Disable buttonTubeNew button befor new Item will be saved
+            this.textBoxTubeCode.Tag = true;            // Save button haven't been pressed yet. When pressed = false
             this.toolTip = new ToolTip();
         }
 
-        // Handler - Save Tube button 
+        // Handler - New button 
+        private void buttonTubeNew_Click(object sender, EventArgs e)
+        {
+            // Disable New and Edit buttons
+            this.buttonTubeNew.Enabled = false;
+            this.buttonTubeEdit.Enabled = false;  
+            // Clear all fields
+            this.textBoxTubeCode.Clear();
+            this.textBoxTubeName.Clear();
+            this.textBoxTubeVolume.Clear();  
+            // Enable all fields
+            this.textBoxTubeCode.Enabled = true;
+            this.textBoxTubeName.Enabled = true;
+            this.textBoxTubeVolume.Enabled = true;
+            // Set focus to textBoxTubeCode
+            this.textBoxTubeCode.Focus();
+        }
+
+        // Handler - Save button 
         private void buttonTubeSave_Click(object sender, EventArgs e)
         {
             TubeCollectorProxy tubeCollector = new TubeCollectorProxy();
@@ -31,10 +52,34 @@ namespace MyLabClient
                 (int.TryParse(this.textBoxTubeVolume.Text, out tubeVolumeInt) ? tubeVolumeInt : 0));    // set tubeVolume to 0 if no ability to parse string from textBoxTubeVolume to int
             // Prepare form for new input
             this.buttonTubeSave.Enabled = false;
-            this.ClearTextBoxes();
+            this.buttonTubeNew.Enabled = true;            
+            this.buttonTubeEdit.Enabled = true;
+            this.textBoxTubeCode.Tag = false;   // to avoid validation of textBoxTubeCode
+            this.textBoxTubeCode.Enabled = false;
+            this.textBoxTubeCode.Tag = true;    // to avoid validation of textBoxTubeCode - return to normal
+            this.textBoxTubeName.Enabled = false;
+            this.textBoxTubeVolume.Enabled = false;
         }
 
-        // Handler - textBox Empty
+        // Handler - Edit button 
+        private void buttonTubeEdit_Click(object sender, EventArgs e)
+        {
+            // Disable New Save and Edit buttons
+            this.buttonTubeNew.Enabled = false;
+            this.buttonTubeSave.Enabled = false;
+            this.buttonTubeEdit.Enabled = false;
+            // Disable Code field
+            this.textBoxTubeCode.Enabled = false;
+            // Enable Name and Volume fields
+            this.textBoxTubeName.Enabled = true;
+            this.textBoxTubeVolume.Enabled = true;
+            // Set focus to textBoxTubeName
+            this.textBoxTubeName.Focus();
+        }
+
+        // Handler - textBoxCode field Empty
+        // if yes - paint textBoxCode field to red disable save button and turn on toolTip
+        // if no - Remove toolTip and Checks if code in textBoxCode field is unique
         private void textBoxEmpty_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (textBoxTubeCode.Text.Length == 0)    // textBox is empty
@@ -43,11 +88,11 @@ namespace MyLabClient
                 buttonTubeSave.Enabled = false;                
                 this.toolTip.SetToolTip(this.textBoxTubeCode, "Code should be filled");
             }
-            else                                     // textBox isn't empty 
+            else if((bool)textBoxTubeCode.Tag)                                    // textBox isn't empty 
             {
                 // Remove toolTip
                 this.toolTip.RemoveAll();    // Remove toolTip
-                // Checks if code is unique
+                // Checks if code in textBoxCode field is unique
                 TextBoxTubeCodeUnique();
             }            
         }
@@ -92,6 +137,6 @@ namespace MyLabClient
             textBoxTubeCode.Clear();
             textBoxTubeName.Clear();
             textBoxTubeVolume.Clear();
-        }
+        }            
     }
 }
