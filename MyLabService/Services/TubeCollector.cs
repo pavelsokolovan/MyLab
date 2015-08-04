@@ -10,7 +10,7 @@ namespace MyLabService.Services
 {
     public class TubeCollector: ITubeCollector
     {
-        // Method to Add new tube
+        // Method to Add new row
         // Return true - if new row was added
         // Return false - if new row wasn't added
         public bool Add(string code, string name, int volume)
@@ -42,13 +42,44 @@ namespace MyLabService.Services
                 // Close connection to DB
                 dbAccessProvider.CloseConnection();
 
-                // Check if new row was added
-                if ((findRow = dbAccessProvider.DataSet.Tables[tableName].Rows.Find(code)) != null)
-                    return true;
-                else
-                    return false;
+                return true;
             }
             else     // new code is already exist in DB - don't add new row
+            {
+                // Close connection to DB
+                dbAccessProvider.CloseConnection();
+                return false;
+            }
+        }
+
+        // Method to Update row
+        // Return true - if row was updated
+        // Return false - if row wasn't found
+        public bool Update(string code, string name, int volume)
+        {
+            // Open connection to DB
+            string commandText = "select * from TUBE where TUBE_CODE='";
+            commandText = String.Concat(commandText, code, "'");
+            string tableName = "Table";
+            DBAccessProvider dbAccessProvider = new DBAccessProvider(commandText, tableName);
+            dbAccessProvider.OpenConnection();
+
+            // Check if row is exist in DB
+            if (dbAccessProvider.DataSet.Tables[tableName].Rows.Count > 0)    // row is exist in DB - update row
+            {
+                // Update data in row
+                dbAccessProvider.DataSet.Tables[tableName].Rows[0]["TUBE_NAME"] = name;
+                dbAccessProvider.DataSet.Tables[tableName].Rows[0]["TUBE_VOLUME"] = volume;
+
+                // Update Table in DB
+                dbAccessProvider.DataAdapter.Update(dbAccessProvider.DataSet, tableName);
+
+                // Close connection to DB
+                dbAccessProvider.CloseConnection();
+
+                return true;
+            }
+            else     // row isn't exist in DB - nothing to update
             {
                 // Close connection to DB
                 dbAccessProvider.CloseConnection();

@@ -48,9 +48,14 @@ namespace MyLabClient
         {
             TubeCollectorProxy tubeCollector = new TubeCollectorProxy();
             int tubeVolumeInt;
-            tubeCollector.Add(this.textBoxTubeCode.Text, this.textBoxTubeName.Text,
-                (int.TryParse(this.textBoxTubeVolume.Text, out tubeVolumeInt) ? tubeVolumeInt : 0));    // set tubeVolume to 0 if no ability to parse string from textBoxTubeVolume to int
-            // Prepare form for new input
+            // Add new row to DB
+            bool isNewRowAdded = tubeCollector.Add(this.textBoxTubeCode.Text, this.textBoxTubeName.Text,    // return true if row was added. Return false if row already exists in DB
+                (int.TryParse(this.textBoxTubeVolume.Text, out tubeVolumeInt) ? tubeVolumeInt : 0));        // set tubeVolume to 0 if no ability to parse string from textBoxTubeVolume to int
+            // Update row if it is exist in DB
+            if (!isNewRowAdded)
+                tubeCollector.Update(this.textBoxTubeCode.Text, this.textBoxTubeName.Text,
+                    (int.TryParse(this.textBoxTubeVolume.Text, out tubeVolumeInt) ? tubeVolumeInt : 0));        // set tubeVolume to 0 if no ability to parse string from textBoxTubeVolume to int
+            // 
             this.buttonTubeSave.Enabled = false;
             this.buttonTubeNew.Enabled = true;            
             this.buttonTubeEdit.Enabled = true;
@@ -137,6 +142,15 @@ namespace MyLabClient
             textBoxTubeCode.Clear();
             textBoxTubeName.Clear();
             textBoxTubeVolume.Clear();
+        }
+
+        //
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxTubeCode.Enabled == false && this.buttonTubeSave.Enabled == false)
+            {
+                this.buttonTubeSave.Enabled = true;
+            }
         }            
     }
 }

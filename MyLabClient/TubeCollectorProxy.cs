@@ -24,10 +24,16 @@ namespace MyLabClient
             tubeCollectorChannel = channelFactory.CreateChannel();
         }
 
-        // Method to Add new tube
+        // Method to Add new row
         public bool Add(string code, string name, int volume)
         {
             return tubeCollectorChannel.Add(code, name, volume);
+        }
+
+        // Method to Update row
+        public bool Update(string code, string name, int volume)
+        {
+            return tubeCollectorChannel.Update(code, name, volume);
         }
 
         // Method to checks if code is presented in DB

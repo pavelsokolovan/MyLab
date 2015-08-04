@@ -11,7 +11,10 @@ namespace MyLabService.Services
     public interface ITubeCollector
     {
         [OperationContract]
-        bool Add(string code, string name, int volume); // Add new row to DB
+        bool Add(string code, string name, int volume); // Add a new row to DB
+
+        [OperationContract]
+        bool Update(string code, string name, int volume); // Update an existing row in DB
 
         [OperationContract]
         bool Contains(string code);                     // Checks if code is presented in DB

@@ -89,6 +89,7 @@
             this.textBoxTubeName.Name = "textBoxTubeName";
             this.textBoxTubeName.Size = new System.Drawing.Size(237, 20);
             this.textBoxTubeName.TabIndex = 5;
+            this.textBoxTubeName.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // label3
             // 
@@ -107,6 +108,7 @@
             this.textBoxTubeVolume.Name = "textBoxTubeVolume";
             this.textBoxTubeVolume.Size = new System.Drawing.Size(237, 20);
             this.textBoxTubeVolume.TabIndex = 7;
+            this.textBoxTubeVolume.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textBoxTubeVolume.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTubeVolume_KeyPress);
             // 
             // label4
