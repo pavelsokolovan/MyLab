@@ -12,7 +12,7 @@ namespace MyLabService.Services
     {
         // Method to Add new row
         // Return true - if new row was added
-        // Return false - if new row wasn't added
+        // Return false - if new row wasn't added, already exists
         public bool Add(string code, string name, int volume)
         {
             // Open connection to DB
@@ -87,7 +87,7 @@ namespace MyLabService.Services
             }
         }
 
-        // Method to checks if code is presented in DB
+        // Method to check if code is presented in DB
         // Return true - if code is presented in DB
         // Return false - if code isn't presented in DB
         public bool Contains(string code)
