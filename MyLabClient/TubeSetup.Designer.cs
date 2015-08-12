@@ -1,6 +1,6 @@
 ﻿namespace MyLabClient
 {
-    partial class Form1
+    partial class TubeSetup
     {
         /// <summary>
         /// Required designer variable.
@@ -143,7 +143,7 @@
             this.buttonTubeNew.UseVisualStyleBackColor = true;
             this.buttonTubeNew.Click += new System.EventHandler(this.buttonTubeNew_Click);
             // 
-            // Form1
+            // TubeSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,8 +158,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonTubeSave);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "MyLab";
+            this.Name = "TubeSetup";
+            this.Text = "Tube Setup";
             this.ResumeLayout(false);
             this.PerformLayout();
 

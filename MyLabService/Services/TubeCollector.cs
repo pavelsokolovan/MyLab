@@ -106,5 +106,19 @@ namespace MyLabService.Services
 
             return (findRow != null);
         }
+
+        // Method for return DataSet item for proper Table
+        // Code is used for searching rows with proper code
+        public DataSet GetDataSetForTable(string tableNameInDB, string code)
+        {
+            // Open connection to DB
+            // SQL request - select * from tableNameInDB where tableNameInDB_CODE like 'code'
+            string commandText = "select * from " + tableNameInDB + " where " + tableNameInDB + "_CODE like '" + code + "'";
+            DBAccessProvider dbAccessProvider = new DBAccessProvider(commandText, tableNameInDB);
+            dbAccessProvider.OpenConnection();
+            dbAccessProvider.CloseConnection();
+
+            return dbAccessProvider.DataSet;
+        }
     }
 }

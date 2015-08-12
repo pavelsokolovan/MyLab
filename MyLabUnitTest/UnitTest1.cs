@@ -224,5 +224,14 @@ namespace MyLabUnitTest
             Assert.IsFalse(actual, "Table is contain code");
         }
         #endregion
+
+        #region TubeCollector_GetDataSetForTable
+
+        [TestMethod]
+        public void TubeCollector_GetDataSetForTable_WhenGetDataSet_DataIsCorrect()
+        {
+            Assert.Fail("Test isn't implemented yet");
+        }
+        #endregion
     }
 }

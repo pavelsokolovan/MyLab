@@ -10,19 +10,37 @@ using System.Windows.Forms;
 
 namespace MyLabClient
 {
-    public partial class Form1 : Form
+    public partial class TubeSetup : Form
     {
-        ToolTip toolTip;
-        
-        // Constructor  
-        public Form1()
+        private ToolTip toolTip;
+        private TubeCollectorProxy tubeCollector;
+        private string tableNameInDB = "TUBE";      // The name of table in DB
+
+        // Constructor 1 - empty Setup screen for new item
+        public TubeSetup(MyLabClient.MainScreen parent)
         {
             InitializeComponent();
+            this.MdiParent = parent;
             this.buttonTubeSave.Enabled = false;        // Disable buttonTubeSave button befor fill textBoxTubeCode field
             this.buttonTubeEdit.Enabled = false;        // Disable buttonTubeEdit button befor new Item will be saved
             this.buttonTubeNew.Enabled = false;         // Disable buttonTubeNew button befor new Item will be saved
             this.textBoxTubeCode.Tag = true;            // Save button haven't been pressed yet. When pressed = false
             this.toolTip = new ToolTip();
+            this.tubeCollector = new TubeCollectorProxy();
+        }
+
+        // Constructor 2 - Setup screen with item which was selected in browser
+        public TubeSetup(MyLabClient.MainScreen parent, string codeOfSelectedRow): this(parent)
+        {
+            // Get DataSet with proper row accordint to Code
+            DataSet dataSet = tubeCollector.GetDataSetForTable(tableNameInDB, codeOfSelectedRow);
+            DataRow dataRow = dataSet.Tables[tableNameInDB].Rows[0];
+            // Fill textBoxes with data from dataRow
+            this.textBoxTubeCode.Text = (string)dataRow["TUBE_CODE"];
+            this.textBoxTubeName.Text = (string)dataRow["TUBE_NAME"];
+            this.textBoxTubeVolume.Text = dataRow["TUBE_VOLUME"].ToString();
+            // Move to edit mode
+            MoveToEditMode();
         }
 
         // Handler - New button 
@@ -46,7 +64,6 @@ namespace MyLabClient
         // Handler - Save button 
         private void buttonTubeSave_Click(object sender, EventArgs e)
         {
-            TubeCollectorProxy tubeCollector = new TubeCollectorProxy();
             int tubeVolumeInt;
             // Add new row to DB
             bool isNewRowAdded = tubeCollector.Add(this.textBoxTubeCode.Text, this.textBoxTubeName.Text,    // return true if row was added. Return false if row already exists in DB
@@ -69,17 +86,7 @@ namespace MyLabClient
         // Handler - Edit button 
         private void buttonTubeEdit_Click(object sender, EventArgs e)
         {
-            // Disable New Save and Edit buttons
-            this.buttonTubeNew.Enabled = false;
-            this.buttonTubeSave.Enabled = false;
-            this.buttonTubeEdit.Enabled = false;
-            // Disable Code field
-            this.textBoxTubeCode.Enabled = false;
-            // Enable Name and Volume fields
-            this.textBoxTubeName.Enabled = true;
-            this.textBoxTubeVolume.Enabled = true;
-            // Set focus to textBoxTubeName
-            this.textBoxTubeName.Focus();
+            MoveToEditMode();
         }
 
         // Handler - textBoxCode field Empty
@@ -105,7 +112,6 @@ namespace MyLabClient
         // Method - textBox Code should be Unique
         private void TextBoxTubeCodeUnique()
         {
-            TubeCollectorProxy tubeCollector = new TubeCollectorProxy();
             if (tubeCollector.Contains(this.textBoxTubeCode.Text))       // Code is presented in DB
             {
                 this.textBoxTubeCode.BackColor = Color.Red;
@@ -118,8 +124,7 @@ namespace MyLabClient
                 this.textBoxTubeCode.BackColor = System.Drawing.SystemColors.Window;
                 buttonTubeSave.Enabled = true;
             }
-        }
-        
+        }        
 
         // Handler - forbids to enter Space in textBoxTubeCode field 
         private void textBoxTubeCode_KeyPress(object sender, KeyPressEventArgs e)
@@ -136,15 +141,7 @@ namespace MyLabClient
                 e.Handled = true;   // Delete symbol 
         }
 
-        // Method to clear all text boxes
-        private void ClearTextBoxes()
-        {
-            textBoxTubeCode.Clear();
-            textBoxTubeName.Clear();
-            textBoxTubeVolume.Clear();
-        }
-
-        //
+        // Handler - Enable Save button if some changes are done in textBoxes (not for textBoxTubeCode)
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             if (textBoxTubeCode.Enabled == false && this.buttonTubeSave.Enabled == false)
@@ -152,5 +149,21 @@ namespace MyLabClient
                 this.buttonTubeSave.Enabled = true;
             }
         }            
+
+        // Method to move to edit mode
+        private void MoveToEditMode()
+        {
+            // Disable New, Save and Edit buttons
+            this.buttonTubeNew.Enabled = false;
+            this.buttonTubeSave.Enabled = false;
+            this.buttonTubeEdit.Enabled = false;
+            // Disable Code field
+            this.textBoxTubeCode.Enabled = false;
+            // Enable Name and Volume fields
+            this.textBoxTubeName.Enabled = true;
+            this.textBoxTubeVolume.Enabled = true;
+            // Set focus to textBoxTubeName
+            this.textBoxTubeName.Focus();
+        }
     }
 }

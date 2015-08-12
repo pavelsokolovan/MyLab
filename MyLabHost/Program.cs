@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using MyLabService.Services;
+using System.Data;
 
 namespace MyLabHost
 {
@@ -30,6 +31,11 @@ namespace MyLabHost
             /*TubeCollector tubeCollector = new TubeCollector();
             tubeCollector.Add("URCUP", "Urine cup", 10);
             tubeCollector.Update("URCUP", "Urine cup updated", 99);
+            Console.ReadKey();*/
+
+            // Get DataSet For Table
+            /*TubeCollector tubeCollector = new TubeCollector();
+            DataSet dataSet = tubeCollector.GetDataSetForTable("TUBE", "R");
             Console.ReadKey();*/
 
             Uri adress = new Uri("http://localhost:8080/");                     // A - adress

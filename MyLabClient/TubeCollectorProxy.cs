@@ -1,6 +1,7 @@
 ﻿using MyLabService.Services;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyLabClient
 {
+    // Additional class to get access to services  
     public class TubeCollectorProxy : ITubeCollector
     {
         private ITubeCollector tubeCollectorChannel;       // channel
@@ -40,6 +42,13 @@ namespace MyLabClient
         public bool Contains(string code)
         {
             return tubeCollectorChannel.Contains(code);
+        }
+
+        // Return DataSet item for proper Table
+        // Code is used for searching rows with proper code
+        public DataSet GetDataSetForTable(string tableNameInDB, string code)
+        {
+            return tubeCollectorChannel.GetDataSetForTable(tableNameInDB, code);
         }
     }
 }

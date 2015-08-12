@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using System.Data;
 
 namespace MyLabService.Services
 {
@@ -11,19 +12,17 @@ namespace MyLabService.Services
     public interface ITubeCollector
     {
         [OperationContract]
-        bool Add(string code, string name, int volume); // Add a new row to DB
+        bool Add(string code, string name, int volume);             // Add a new row to DB
 
         [OperationContract]
-        bool Update(string code, string name, int volume); // Update an existing row in DB
+        bool Update(string code, string name, int volume);          // Update an existing row in DB
 
         [OperationContract]
-        bool Contains(string code);                     // Checks if code is presented in DB
+        bool Contains(string code);                                 // Checks if code is presented in DB
 
-        /*[OperationContract]
-        string GetTubeCodes();*/
-
-        /*/ TEMP
+        // Return DataSet item for proper Table
+        // Code is used for searching rows with proper code
         [OperationContract]
-        string[] GetString(string st);*/
+        DataSet GetDataSetForTable(string tableNameInDB, string code);  
     }
 }
